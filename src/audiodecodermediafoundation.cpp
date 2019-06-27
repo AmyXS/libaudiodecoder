@@ -59,7 +59,7 @@
 #include <propvarutil.h>
 #include <assert.h>
 
-#include "audiodecodermediafoundation.h"
+#include "../include/audiodecodermediafoundation.h"
 
 const int kBitsPerSample = 16;
 const int kNumChannels = 2;

@@ -36,7 +36,7 @@
  * license above.
  */
 
-#include "audiodecoderbase.h"
+#include "../include/audiodecoderbase.h"
 
 AudioDecoderBase::AudioDecoderBase(const std::string filename)
 : m_iNumSamples(0)

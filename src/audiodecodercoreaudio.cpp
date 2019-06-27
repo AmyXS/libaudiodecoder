@@ -38,7 +38,7 @@
 
 #include <string>
 #include <iostream>
-#include "audiodecodercoreaudio.h"
+#include "../include/audiodecodercoreaudio.h"
 
 
 AudioDecoderCoreAudio::AudioDecoderCoreAudio(const std::string filename) 

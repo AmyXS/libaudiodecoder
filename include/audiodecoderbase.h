@@ -81,9 +81,15 @@ class DllExport AudioDecoderBase
         int read(int size, const SAMPLE *buffer) { return 0u; };
 
         /** Get the number of audio samples in the file. This will be a good estimate of the 
-            number of samples you can get out of read(), though you should not rely on it
-            being perfectly accurate always. (eg. it might be slightly inaccurate with VBR MP3s)*/
+            number of samples you can get out of read(), if you don't specify an output sample rate,
+            though you should not rely on it being perfectly accurate always. (eg. it might be slightly inaccurate with VBR MP3s)*/
         inline int    numSamples()        const { return m_iNumSamples; };
+
+        /** Get the number of output audio samples.
+            This may be different from numSamples, if the output sample rate is different from the sample rate of the file.
+            This will be a good estimate of the number of samples you can get out of read(),
+            though it might be slightly inaccurate with VBR MP3s */
+        inline int    numSamplesAtOutputSampleRate()        const { return m_outputNumSamples; };
 
         /** Get the number of channels in the audio file */
         inline int    channels()          const { return m_iChannels; };

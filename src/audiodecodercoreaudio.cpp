@@ -36,6 +36,7 @@
  * license above.
  */
 
+#include <cmath>
 #include <string>
 #include <iostream>
 #include "../include/audiodecodercoreaudio.h"
@@ -193,7 +194,8 @@ int AudioDecoderCoreAudio::open() {
 	m_iNumSamples = (totalFrameCount/*-m_headerFrames*/)*m_iChannels;
 	m_iSampleRate = inputFormat.mSampleRate;
 	m_fDuration = m_iNumSamples / static_cast<float>(m_iSampleRate * m_iChannels);
-	
+    m_outputNumSamples = static_cast<int>(std::ceil(m_fDuration * m_outputSampleRate));
+
     //Convert mono files into stereo
     if (inputFormat.NumberChannels() == 1)
     {

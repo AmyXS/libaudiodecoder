@@ -65,7 +65,8 @@ try to avoid calling read() or any other libaudiodecoder function from inside yo
 class DllExport AudioDecoderBase
 {
     public:
-        AudioDecoderBase(const std::string filename);
+        /** When output_sample_rate is -1, the sample rate of the file will be used as output sample rate */
+        AudioDecoderBase(const std::string & filename, int output_sample_rate = -1);
         virtual ~AudioDecoderBase();
 
         /** Opens the file for decoding */
@@ -109,6 +110,8 @@ class DllExport AudioDecoderBase
         int   m_iSampleRate;
         float m_fDuration; // in seconds
         int   m_iPositionInSamples; // in samples;
+        int   m_outputNumSamples;
+        int   m_outputSampleRate;
 };
 
 #endif //__AUDIODECODERBASE_H__

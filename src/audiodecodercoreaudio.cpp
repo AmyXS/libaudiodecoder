@@ -41,8 +41,8 @@
 #include "../include/audiodecodercoreaudio.h"
 
 
-AudioDecoderCoreAudio::AudioDecoderCoreAudio(const std::string filename) 
-: AudioDecoderBase(filename)
+AudioDecoderCoreAudio::AudioDecoderCoreAudio(const std::string & filename, int output_sample_rate)
+: AudioDecoderBase(filename, output_sample_rate)
 , m_headerFrames(0)
 {
     m_filename = filename;
@@ -100,10 +100,14 @@ int AudioDecoderCoreAudio::open() {
     m_inputFormat = inputFormat;
     
 	// create the output format
+    if (m_outputSampleRate < 0) {
+        m_outputSampleRate = inputFormat.mSampleRate;
+    }
+
 	CAStreamBasicDescription outputFormat;
     bzero(&outputFormat, sizeof(AudioStreamBasicDescription));
 	outputFormat.mFormatID = kAudioFormatLinearPCM;
-	outputFormat.mSampleRate = inputFormat.mSampleRate;
+    outputFormat.mSampleRate = m_outputSampleRate;
 	outputFormat.mChannelsPerFrame = 2;
     outputFormat.mFormatFlags = kAudioFormatFlagsCanonical;  
     //kAudioFormatFlagsCanonical means Native endian, float, packed on Mac OS X, 

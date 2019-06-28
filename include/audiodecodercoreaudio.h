@@ -66,7 +66,7 @@
 
 class AudioDecoderCoreAudio : public AudioDecoderBase {
 public:
-    AudioDecoderCoreAudio(const std::string filename);
+    AudioDecoderCoreAudio(const std::string & filename, int output_sample_rate = -1);
     ~AudioDecoderCoreAudio();
     // Overriding AudioDecoderBase 
     int open();

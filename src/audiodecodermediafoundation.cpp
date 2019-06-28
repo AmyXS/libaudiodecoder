@@ -91,8 +91,8 @@ std::wstring s2ws(const std::string& s)
 }
 
 
-AudioDecoderMediaFoundation::AudioDecoderMediaFoundation(const std::string filename)
-    : AudioDecoderBase(filename)
+AudioDecoderMediaFoundation::AudioDecoderMediaFoundation(const std::string& filename, int output_sample_rate)
+    : AudioDecoderBase(filename, output_sample_rate)
     , m_pReader(NULL)
     , m_pAudioType(NULL)
     , m_wcFilename(NULL)

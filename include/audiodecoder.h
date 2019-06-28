@@ -48,7 +48,7 @@
 class DllExport AudioDecoder : public AudioDecoderMediaFoundation
 {
     public:
-        AudioDecoder(const std::string filename) : AudioDecoderMediaFoundation(filename) {};
+        AudioDecoder(const std::string& filename, int output_sample_rate = -1) : AudioDecoderMediaFoundation(filename, output_sample_rate) {};
     private:
         //Disable copy constructor and assignment operator
         AudioDecoder(const AudioDecoder& that);
@@ -61,7 +61,7 @@ class AudioDecoder : public AudioDecoderCoreAudio
 {
     public:
         //When output_sample_rate is -1, the sample rate of the file will be used as output sample rate
-        AudioDecoder(const std::string & filename, int output_sample_rate = -1) : AudioDecoderCoreAudio(filename, output_sample_rate) {};
+        AudioDecoder(const std::string& filename, int output_sample_rate = -1) : AudioDecoderCoreAudio(filename, output_sample_rate) {};
     private:
         //Disable copy constructor and assignment operator
         AudioDecoder(const AudioDecoder& that);

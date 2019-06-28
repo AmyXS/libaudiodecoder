@@ -42,7 +42,7 @@
 #include "../include/audiodecodercoreaudio.h"
 
 
-AudioDecoderCoreAudio::AudioDecoderCoreAudio(const std::string & filename, int output_sample_rate)
+AudioDecoderCoreAudio::AudioDecoderCoreAudio(const std::string& filename, int output_sample_rate)
 : AudioDecoderBase(filename, output_sample_rate)
 , m_headerFrames(0)
 {

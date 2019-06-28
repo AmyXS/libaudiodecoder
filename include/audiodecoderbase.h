@@ -66,7 +66,7 @@ class DllExport AudioDecoderBase
 {
     public:
         /** When output_sample_rate is -1, the sample rate of the file will be used as output sample rate */
-        AudioDecoderBase(const std::string & filename, int output_sample_rate = -1);
+        AudioDecoderBase(const std::string& filename, int output_sample_rate = -1);
         virtual ~AudioDecoderBase();
 
         /** Opens the file for decoding */

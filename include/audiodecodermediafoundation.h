@@ -64,7 +64,7 @@ class IMFMediaSource;
 
 class DllExport AudioDecoderMediaFoundation : public AudioDecoderBase {
   public:
-    AudioDecoderMediaFoundation(const std::string filename);
+    AudioDecoderMediaFoundation(const std::string& filename, int output_sample_rate = -1);
     ~AudioDecoderMediaFoundation();
     int open();
     int seek(int sampleIdx);

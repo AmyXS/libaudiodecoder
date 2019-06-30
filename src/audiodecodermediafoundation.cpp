@@ -545,7 +545,7 @@ bool AudioDecoderMediaFoundation::configureAudioStream()
 	m_iSampleRate = samplesPerSecond;
 	m_iBitsPerSample = bitsPerSample;
 	//For compressed files, the bits per sample is undefined, so by convention we're
-	//going to get 16-bit integers out.
+    //going to get 16-bit float out.
 	if (m_iBitsPerSample == 0)
 	{
 		m_iBitsPerSample = kBitsPerSample;
@@ -568,7 +568,7 @@ bool AudioDecoderMediaFoundation::configureAudioStream()
         std::cerr << "SSMF: failed to set subtype";
         return false;
     }
-/*
+
     hr = m_pAudioType->SetUINT32(MF_MT_ALL_SAMPLES_INDEPENDENT, true);
     if (FAILED(hr)) {
         std::cerr << "SSMF: failed to set samples independent";
@@ -603,9 +603,7 @@ bool AudioDecoderMediaFoundation::configureAudioStream()
         std::cerr << "SSMF: failed to set block alignment";
         return false;
     }
-	*/
 
-	/*
 	//MediaFoundation will not convert between mono and stereo without a transform!
     hr = m_pAudioType->SetUINT32(MF_MT_AUDIO_NUM_CHANNELS, kNumChannels);
     if (FAILED(hr)) {
@@ -615,12 +613,11 @@ bool AudioDecoderMediaFoundation::configureAudioStream()
 
 	
 	//MediaFoundation will not do samplerate conversion without a transform in the pipeline.
-    hr = m_pAudioType->SetUINT32(MF_MT_AUDIO_SAMPLES_PER_SECOND, kSampleRate);
+    hr = m_pAudioType->SetUINT32(MF_MT_AUDIO_SAMPLES_PER_SECOND, static_cast<UINT32>(m_outputSampleRate));
     if (FAILED(hr)) {
         std::cerr << "SSMF: failed to set sample rate";
         return false;
     }
-	*/
 
     // Set this type on the source reader. The source reader will
     // load the necessary decoder.

@@ -58,6 +58,7 @@
 #include <mferror.h>
 #include <propvarutil.h>
 #include <assert.h>
+#include <vector>
 
 #include "../include/audiodecodermediafoundation.h"
 
@@ -247,10 +248,10 @@ int AudioDecoderMediaFoundation::seek(int sampleIdx)
 
 int AudioDecoderMediaFoundation::read(int size, const SAMPLE *destination)
 {
-	assert(size < sizeof(m_destBufferShort));
+    std::vector<SHORT_SAMPLE>destBufferShort(static_cast<size_t>(size));
     if (sDebug) { std::cout << "read() " << size << std::endl; }
 	//TODO: Change this up if we want to support just short samples again -- Albert
-    SHORT_SAMPLE *destBuffer = m_destBufferShort;
+    SHORT_SAMPLE *destBuffer = destBufferShort.data();
 	size_t framesRequested(size / m_iChannels);
     size_t framesNeeded(framesRequested);
 

@@ -44,7 +44,7 @@
 #include <vector>
 
 #ifdef _WIN32
-#define DllExport   __declspec( dllexport )
+#define DllExport  // __declspec( dllexport )
 #else
 #define DllExport
 #endif

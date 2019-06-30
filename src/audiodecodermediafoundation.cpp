@@ -698,6 +698,9 @@ bool AudioDecoderMediaFoundation::readProperties()
     //m_iBitrate = m_iBitsPerSample * m_iSampleRate * m_iChannels;
 	//XXX: Should we implement bitrate in libaudiodecoder? Just enable that line...
 
+    // Calculate estimated number of samples at output samplerate, this may be inaccurate for VBR encoded files
+    m_outputNumSamples = secondsFromMF(m_mfDuration) * m_outputSampleRate * m_iChannels;
+
     return true;
 }
 

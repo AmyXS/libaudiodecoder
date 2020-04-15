@@ -543,7 +543,9 @@ bool AudioDecoderMediaFoundation::configureAudioStream()
 
 	m_iChannels = numChannels;
 	m_iSampleRate = samplesPerSecond;
-	m_iBitsPerSample = bitsPerSample;
+    //m_iBitsPerSample = bitsPerSample;
+    m_iBitsPerSample = kBitsPerSample;  // Amy: always use the default bit depth of 16 to work with the rest of the project
+
 	//For compressed files, the bits per sample is undefined, so by convention we're
     //going to get 16-bit float out.
 	if (m_iBitsPerSample == 0)
